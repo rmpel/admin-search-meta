@@ -1,0 +1,10 @@
+{
+  "Plugin Name": "Admin Search Meta",
+  "Plugin URI": "https://github.com/rmpel/admin-search-meta",
+  "Version": "0.0.1",
+  "Author": "Remon Pel",
+  "Description": "Allow filtering your posts-panels by meta.",
+  "Requires PHP": "5.6.0",
+  "Requires at least": "4.0",
+  "Textdomain": "rmp_asm"
+}

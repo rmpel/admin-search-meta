@@ -40,7 +40,7 @@ class AdminSearchMeta {
 		}
 
 		add_action( 'admin_menu', function () {
-			add_menu_page( __( 'Admin Meta Search', 'rmp_asm' ), __( 'Admin Meta Search', 'rmp_asm' ), 'manage_options', 'rmp-asm', [
+			add_menu_page( __( 'Admin Meta Search', 'rmp_asm' ), __( 'Admin Meta Search', 'rmp_asm' ), 'manage_options', 'rmp_asm', [
 				static::class,
 				'admin_page_callback'
 			] );
@@ -163,7 +163,7 @@ class AdminSearchMeta {
                         </fieldset>
                     </div>
 				<?php } ?>
-                <button class="button button-primary button-large"><?php _e( 'Save', 'rmp-asm' ); ?></button>
+                <button class="button button-primary button-large"><?php _e( 'Save', 'rmp_asm' ); ?></button>
             </form>
         </div>
         <style>

@@ -2,7 +2,7 @@
 /*
 Plugin Name: Admin Search Meta
 Plugin URI: https://github.com/rmpel/admin-search-meta
-Version: 0.0.1
+Version: 0.0.2
 Author: Remon Pel
 Description: Allow filtering your posts-panels by meta. Not to be confused with Admin Meta Search, which did a small portion of what this plugin does, and is defunct for over 6 years.
 Requires PHP: 5.6.0

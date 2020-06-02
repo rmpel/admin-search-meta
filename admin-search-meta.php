@@ -2,7 +2,7 @@
 /*
 Plugin Name: Admin Search Meta
 Plugin URI: https://github.com/rmpel/admin-search-meta
-Version: 0.0.2
+Version: 0.0.3
 Author: Remon Pel
 Description: Allow filtering your posts-panels by meta. Not to be confused with Admin Meta Search, which did a small portion of what this plugin does, and is defunct for over 6 years.
 Requires PHP: 5.6.0
@@ -37,6 +37,9 @@ class AdminSearchMeta {
 			add_filter( 'posts_where', function ( $where ) {
 				return call_user_func( [ static::class, 'getInstance' ] )->posts_where( $where );
 			} );
+			add_filter( 'posts_distinct', function ( $distinct ) {
+				return call_user_func( [ static::class, 'getInstance' ] )->posts_distinct( $distinct );
+			} );
 		}
 
 		add_action( 'admin_menu', function () {
@@ -62,6 +65,23 @@ class AdminSearchMeta {
 	 *
 	 * @return string SQL join
 	 */
+	private function posts_distinct( $distinct ) {
+		global $wpdb;
+		$alterations = static::alterations();
+
+		if ( $alterations ) {
+			return 'DISTINCT';
+		}
+
+		return $distinct;
+	}
+
+
+	/**
+	 * Join postmeta in admin post search
+	 *
+	 * @return string SQL join
+	 */
 	private function posts_join( $join ) {
 		global $wpdb;
 		$alterations = static::alterations();
@@ -76,6 +96,9 @@ class AdminSearchMeta {
 
 	/**
 	 * Filtering the where clause in admin post search query
+	 * 
+	 * I have considered creating separate joins for each selected meta_key, but it is also possible to do a global meta-match, so there would be no named
+	 * meta_key-join and we would need to do a SELECT DISTINCT anyways, so the solution is in fact to do a SELECT DISTINCT as it works in all cases.
 	 *
 	 * @return string SQL WHERE
 	 */
